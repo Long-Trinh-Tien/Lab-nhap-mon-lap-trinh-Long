@@ -28,6 +28,20 @@
 	    return 1;//true
 	}
 
+//	int isPrime(int n) {
+//    if (n <= 1) {
+//        return 0;
+//    }
+//
+//    for (int i = 2; i <= n / 2; ++i) {
+//        if (n % i == 0) {
+//            return 0;
+//        }
+//    }
+//
+//    return 1;
+//}
+
 	int find_nearest_fibonacci(int n) {
 	    int a = 1, b = 1, c;
 	    //a<b -> stop when n is between 2 nearest fibonacci number a and b
@@ -151,10 +165,10 @@
     if ((s_count + a_count + x_count + o_count + n_count) > 3) {
 //    	printf("Knight got a buff\n");
         *realHP2 += 50;
-        *baseHP2 = *realHP2;
+//        *baseHP2 = *realHP2;
         if (*realHP2 > 888) {
             *realHP2 = 888;
-        	*baseHP2 = *realHP2;
+//        	*baseHP2 = *realHP2;
         }
 //        printf("base1: %d base2: %d real1: %f real2: %f\n",*baseHP1,*baseHP2,*realHP1,*realHP2);
     }
@@ -172,16 +186,16 @@
 			}
 			if(wp1 == 0){
 				*realHP1 = (double)(*baseHP1)/10;
-				*baseHP1= *realHP1;
+//				*baseHP1= *realHP1;
 			}
 
 				//has sword
 			if(wp1==3){
 				*realHP1 *= 2;
-				*baseHP1= *realHP1;
+//				*baseHP1= *realHP1;
 			}
 			*realHP1 *= is_ground_equal_baseHP;
-			*baseHP1 = *realHP1;
+//			*baseHP1 = *realHP1;
     }
     void realHP2_calculation(int *baseHP2,int wp2,double *realHP2,int ground){
 	    	double is_ground_equal_baseHP = 1;
@@ -193,13 +207,13 @@
 			}
 			if(wp2 == 0){
 				*realHP2 = (double)(*baseHP2)/10;
-        		*baseHP2 = *realHP2;
+//        		*baseHP2 = *realHP2;
 			}
 			*realHP2 *= is_ground_equal_baseHP;
-			*baseHP2 = *realHP2;
+//			*baseHP2 = *realHP2;
     }
 int main() {
-//	while(1){
+	while(1){
 	//read data from input to corresponding variables
 	int baseHP1, baseHP2, wp1, wp2, ground;
 	double out = 0.0;
@@ -229,7 +243,6 @@ int main() {
     	FINAL_CALCULATION,
     	EXIT,
 	};
-//    int currentState; //remember to // this line
     enum State currentState = START;
 	while(currentState!=EXIT){
     switch(currentState){
@@ -291,7 +304,9 @@ int main() {
     	case CHECK_GROUND:
     		if(ground == 666){
     			realHP1 = find_nearest_fibonacci(baseHP1);
+//				printf("base1: %d base2: %d real1: %f real2: %f\n",baseHP1,baseHP2,realHP1,realHP2);
     			realHP2 = find_nearest_fibonacci(baseHP2);
+//				printf("base1: %d base2: %d real1: %f real2: %f\n",baseHP1,baseHP2,realHP1,realHP2);			
 			}
 			
 			if(ground == 777){
@@ -301,8 +316,8 @@ int main() {
 				for (int i =0;i<n;i++){
 					scanf("%d", &godWeapon[i]);
 					if(isPerfect(godWeapon[i],baseHP2)!=0){
-					    realHP2=0;
 						if(realHP2 <= isPerfect(godWeapon[i],baseHP2)){
+//					printf("base1: %d base2: %d real1: %f real2: %f\n",baseHP1,baseHP2,realHP1,realHP2);						
 							realHP2 = isPerfect(godWeapon[i],baseHP2);
 						}
 					}
@@ -318,8 +333,12 @@ int main() {
 			        }
 			    }				
 				if(sumMaxRowAndColumn(a,n,n)>5000){
+					printf("base1: %d base2: %d real1: %f real2: %f\n",baseHP1,baseHP2,realHP1,realHP2);
 					wp1 = 3;//get the Zeus's weapon
+					baseHP1=realHP1;
 					realHP1_calculation(&baseHP1,wp1,&realHP1,ground);
+					printf("base1: %d base2: %d real1: %f real2: %f\n",baseHP1,baseHP2,realHP1,realHP2);
+
 				}
 			}
 			
@@ -371,7 +390,7 @@ int main() {
 }
 
     display(out);
-//    printf("\n");
-//}
+    printf("\n");
+}
     return 0;
 }
